@@ -4,6 +4,14 @@ import json
 
 app = FastAPI()
 
+@app.get("/")
+def home():
+    return {"message": "API is running"}
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("json_handle:app", host="0.0.0.0", port=port)
+
 # loading initial data from the JSON file into a Python list
 with open("data.json", "r") as f:
     db = json.load(f)
